@@ -1,79 +1,151 @@
-/* Base Styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&display=swap');
+
+/* Apply the new fonts */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
-header, footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 }
 
-header .logo {
-    width: 50px;
+p, a, button, input, select, textarea {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
 }
 
-header .login-button {
-    float: right;
-    margin-right: 20px;
-    color: white;
-    text-decoration: none;
-}
-
-nav {
-    text-align: center;
-    background-color: #444;
-    padding: 0.5em 0;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-.place-card, .review-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.place-card img, .review-card img {
-    border-radius: 10px;
-    width: 100%;
-    height: auto;
-}
-
-footer {
-    margin-top: 20px;
+/* Header */
+header {
+    background-color: #ff9500;
     padding: 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
 
-.details-button, .add-review, .form {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background-color: #5cb85c;
+.logo {
+    height: 50px;
+}
+
+.login-button {
+    background-color: #ff9500;
     color: white;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.details-button:hover, .add-review:hover, .form:hover {
-    background-color: #4cae4c;
+.login-button:hover {
+    background-color: #e08700;
+}
+
+/* Footer */
+footer {
+    background-color: #ff9500;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Place Cards */
+.place-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+}
+
+.place-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.details-button {
+    background-color: #ff9500;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.details-button:hover {
+    background-color: #e08700;
+}
+
+/* Place Details */
+.place-details {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.place-image-large {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.place-info {
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Review Cards */
+.review-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.add-review {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.add-review form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-review textarea {
+    resize: vertical;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.add-review select,
+.add-review button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.add-review button {
+    background-color: #ff9500;
+    color: white;
+    border: none;
+}
+
+.add-review button:hover {
+    background-color: #e08700;
 }
