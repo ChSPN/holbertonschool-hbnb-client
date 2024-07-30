@@ -4,7 +4,7 @@
 /* Apply the new fonts */
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #f3f3f3; /* Fond gris clair */
+  background-color: #f4f4f4;/* Fond gris clair */
   margin: 0;
   padding: 0;
 }
@@ -21,9 +21,17 @@ p, a, button, input, select, textarea {
 }
 
 /* Header */
+nav {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Space out items to the edges */
+    align-items: center; /* Center align items vertically */
+    padding: 0 20px; /* Add horizontal padding */
+}
+
 header {
     background-color: #ff9500;
-    padding: 20px;
+    color: #fff;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +47,6 @@ header {
     color: white;
     padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -52,23 +59,47 @@ footer {
     background-color: #ff9500;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
+    padding: 10px;
     width: 100%;
     bottom: 0;
     font-family: 'Open Sans', sans-serif;
 }
+/* MAIN */
+main {
+    padding: 20px;
+}
+
+/* Filter section styles */
+#filter {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center the entire filter section horizontally */
+    margin-bottom: 20px; /* Space below the filter section */
+}
+
+#filter label, #filter select {
+    margin: 0 10px; /* Space around label and select */
+}
 
 /* Place Cards */
 .place-card {
-    border: 1px solid #ffffff;
+    border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px;
+    margin: 10px;
+    background-color: #fff;
+    /* different de chez delphine pour les deux lignes suivantes, a voir si cest ok */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.place-card {
+    text-align: center;
+}
+
+.review-card {
+    text-align: left;
+}
 .place-image {
     width: 100%;
     border-radius: 10px;
