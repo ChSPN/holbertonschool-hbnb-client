@@ -1,32 +1,79 @@
-/* 
-  This is a SAMPLE File to get you started. Follow the instructions on the project to complete the tasks. 
-  You'll probably need to override some of theese styles.
-*/
-
-* {
-    box-sizing: border-box;
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
 }
 
-body {
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
+header, footer {
     background-color: #333;
-    color: #fff;
-    padding: 1rem;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+header .logo {
+    width: 50px;
+}
+
+header .login-button {
+    float: right;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    text-align: center;
+    background-color: #444;
+    padding: 0.5em 0;
 }
 
 nav a {
-    color: #fff;
+    color: white;
+    margin: 0 15px;
     text-decoration: none;
-    margin-left: 1rem;
 }
 
-main {
-    padding: 2rem;
+nav a:hover {
+    text-decoration: underline;
+}
+
+.place-card, .review-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.place-card img, .review-card img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.details-button, .add-review, .form {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.details-button:hover, .add-review:hover, .form:hover {
+    background-color: #4cae4c;
 }
