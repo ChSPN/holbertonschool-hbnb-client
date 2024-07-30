@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+h2 {
+    text-align: left;
+    margin-left: 15px;
+}
+
 p, a, button, input, select, textarea {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -80,7 +85,9 @@ main {
 #filter label, #filter select {
     margin: 0 10px; /* Space around label and select */
 }
-
+#filter label {
+    font-weight: bold; /* Bold text for labels */
+}
 /* Place Cards */
 .place-card {
     border: 1px solid #ddd;
@@ -88,17 +95,10 @@ main {
     padding: 20px;
     margin: 10px;
     background-color: #fff;
-    /* different de chez delphine pour les deux lignes suivantes, a voir si cest ok */
+    flex:1; /* Flex properties for responsive layout */
+    max-width: 300px; /* Maximum width for the card */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.place-card {
-    text-align: center;
-}
-
-.review-card {
-    text-align: left;
 }
 .place-image {
     width: 100%;
@@ -126,6 +126,7 @@ main {
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
+    background-color: #fff;
 }
 
 .place-image-large {
@@ -136,10 +137,12 @@ main {
 .place-info {
     margin-top: 20px;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 /* flexbox*/
 #places-list {
     display: flex; /* Use flexbox layout */
+    gap:0px; /* Space between items */
     flex-wrap: wrap; /* Allow elements to wrap to the next line */
     justify-content: space-around; /* Distribute space around items */
 }
@@ -150,16 +153,19 @@ main {
     padding: 10px;
     margin: 20px;
     background-color: #fff;
+    text-align: left;
     flex: 0 1 calc(33.333% - 40px); /* Flex properties for responsive layout */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-
+.review-card p:first-child strong {
+    display:block;
+    margin-bottom: 10px;
+}
+.review-card p:last-child strong {
+    font-weight: normal;
+}
 .add-review {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
     margin: 20px;
-    background-color: #fff; /* Fond blanc pour le formulaire */
 }
 
 .add-review form {
@@ -170,6 +176,7 @@ main {
 .add-review textarea {
     resize: vertical;
     padding: 10px;
+    padding-left: 0px;
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
@@ -180,6 +187,7 @@ main {
 .add-review select,
 .add-review button {
     padding: 10px;
+    padding-left: 0px;
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
@@ -195,4 +203,9 @@ main {
 
 .add-review button:hover {
     background-color: #e08700;
+}
+
+.add-review label {
+    font-weight: bold;
+    padding-bottom: 5px;
 }
