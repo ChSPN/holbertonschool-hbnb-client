@@ -96,7 +96,8 @@ main {
     margin: 10px;
     background-color: #fff;
     flex:1; /* Flex properties for responsive layout */
-    max-width: 300px; /* Maximum width for the card */
+    min-width: 300px; /* Maximum width for the card */
+    max-width: 300px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -15,6 +15,8 @@ app.config.from_object("config.Config")
 
 jwt = JWTManager(app)
 CORS(app)  # Enable CORS for all routes
+with open("data/countries.json") as f:
+    countries = json.load(f)
 
 with open("data/users.json") as f:
     users = json.load(f)
@@ -46,6 +48,18 @@ def login():
 
     access_token = create_access_token(identity=user["id"])
     return jsonify(access_token=access_token)
+
+
+@app.route("/countries", methods=["GET"])
+def get_countries():
+    response = [
+        {
+            "code": country["code"],
+            "name": country["name"],
+        }
+        for country in countries
+    ]
+    return jsonify(response)
 
 
 @app.route("/places", methods=["GET"])

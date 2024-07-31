@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.ok) {
           const data = await response.json();
           // Set the cookie with SameSite=None; Secure
-          document.cookie = `token=${data.access_token}; path=/; SameSite=None; Secure`;
+          document.cookie = `token=${data.access_token}; path=/; SameSite=None;`;
           window.location.href = 'index.html';
         } else {
           const errorData = await response.json();
@@ -55,19 +55,17 @@ function getCookie(name) {
 
 function checkAuthentication() {
   const token = getCookie('token');
-  const loginLink = document.getElementById('login-link');
 
   if (!token) {
-      loginLink.style.display = 'block';
+      window.location.href = 'login.html';  // Redirect to login page
   } else {
-      loginLink.style.display = 'none';
       fetchPlaces(token);
   }
 }
 //Récupérer les données des lieux
 async function fetchPlaces(token) {
   try {
-      const response = await fetch('https://your-api-url/places', {
+      let response = await fetch('http://127.0.0.1:5000/places', {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`,
@@ -78,6 +76,21 @@ async function fetchPlaces(token) {
       if (response.ok) {
           const places = await response.json();
           displayPlaces(places);
+          response = await fetch('http://127.0.0.1:5000/countries', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        const countries = await response.json();
+        const countryFilter = document.getElementById('country-filter');
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.textContent = country.name;
+            countryFilter.appendChild(option);
+        });
       } else {
           console.error('Failed to fetch places:', response.statusText);
       }
@@ -93,12 +106,12 @@ function displayPlaces(places) {
   places.forEach(place => {
       const placeCard = document.createElement('div');
       placeCard.className = 'place-card';
-
+      placeCard.setAttribute('data-country', place.country_code);
       placeCard.innerHTML = `
-          <img class="place-image" src="${place.image_url}" alt="${place.name}">
-          <h3>${place.name}</h3>
+          <img class="place-image" src="${place.image_url == undefined ? 'images/place1.jpg' : place.image_url}" alt="${place.host_name}">
+          <h3>${place.host_name}</h3>
           <p>${place.description}</p>
-          <p>Location: ${place.location}</p>
+          <p>Location: ${place.city_name}, ${place.country_name}</p>
           <p>Price: ${place.price_per_night}</p>
           <button class="details-button" onclick="viewDetails(${place.id})">View Details</button>
       `;
@@ -111,7 +124,7 @@ function filterPlaces(selectedCountry) {
   const places = document.querySelectorAll('.place-card');
 
   places.forEach(place => {
-      const location = place.querySelector('p').textContent.split(': ')[1];
+      const location = place.getAttribute('data-country');
       if (selectedCountry === 'All' || location === selectedCountry) {
           place.style.display = 'block';
       } else {
