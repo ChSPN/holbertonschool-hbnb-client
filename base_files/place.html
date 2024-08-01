@@ -11,44 +11,33 @@
 <body>
     <header>
         <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo"></a>
-        <a href="login.html" class="login-button">Login</a>
+        <a href="login.html" class="login-button" id="login">Login</a>
     </header>
     <main>
         <h1>Beautiful Beach House</h1>
         <div class="place-details">
-            <img src="images/place1.jpg" alt="Beautiful Beach House" class="place-image-large">
-            <div class="place-info">
-                <p><strong>Host:</strong> John Doe</p>
-                <p><strong>Price per night:</strong> $150</p>
-                <p><strong>Location:</strong> Los Angeles, United States</p>
-                <p><strong>Description:</strong> A beautiful beach house with amazing views...</p>
-                <p><strong>Amenities:</strong> WiFi, Pool, Air Conditioning</p>
-            </div>
+            <div id="place-info"></div>
+            <ul id="place-amenities"></div>
         </div>
         <h2>Reviews</h2>
-        <div class="review-card">
-            <p><strong>Jane Smith:</strong> Great place to stay!</p>
-            <p><strong>Rating:</strong> ★★★★☆</p>
-        </div>
-        <div class="review-card">
-            <p><strong>Robert Brown:</strong> Amazing location and very comfortable.</p>
-            <p><strong>Rating:</strong> ★★★★★</p>
-        </div>
-        <h2>Add a Review</h2>
-        <div class="add-review">
-            <form action="submit_review.php" method="POST">
-                <label for="review">Your Review:</label>
-                <textarea id="review" name="review" rows="4" required></textarea>
-                <label for="rating">Rating:</label>
-                <select id="rating" name="rating" required>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-                <button type="submit">Submit Review</button>
-            </form>
+        <div id="reviews-list"></div>
+        <div id="add-review-form">
+            <h2>Add a Review</h2>
+            <div class="add-review">
+                <form>
+                    <label for="review">Your Review:</label>
+                    <textarea id="review" name="review" rows="4" required></textarea>
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating" required>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
         </div>
     </main>
     <footer>
