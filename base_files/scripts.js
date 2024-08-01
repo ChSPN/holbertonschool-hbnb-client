@@ -137,9 +137,26 @@ function getPlaceIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get('place_id');
 }
+document.addEventListener('DOMContentLoaded', async () => {
+  const placeId = getPlaceIdFromUrl();
+  if (!placeId) {
+      alert('Place ID not found in URL');
+      return;
+  }
+
+  const token = getCookie('token');
+  try {
+      const placeDetails = await fetchPlaceDetails(placeId, token);
+      displayPlaceDetails(placeDetails);
+      displayAddReviewForm();
+  } catch (error) {
+      console.error('Error fetching place details:', error);
+      alert('Failed to fetch place details');
+  }
+});
 //Faire une requête AJAX pour obtenir les détails de l'endroit
 async function fetchPlaceDetails(placeId, token) {
-  const response = await fetch(`http://127.0.0.1:5000/places/${placeId}`, {
+  const response = await fetch(`http://127.0.0.1:5000/places/${place.id}`, {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
