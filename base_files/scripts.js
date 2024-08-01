@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loginUser(email, password) {
-  const response = await fetch('http://127.0.0.1:5500/login', {
+  const response = await fetch('http://127.0.0.1:5000/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ function checkAuthentication() {
 //Récupérer les données des lieux
 async function fetchPlaces(token) {
   try {
-      let response = await fetch('http://127.0.0.1:5500/places', {
+      let response = await fetch('http://127.0.0.1:5000/places', {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`,
@@ -76,7 +76,7 @@ async function fetchPlaces(token) {
       if (response.ok) {
           const places = await response.json();
           displayPlaces(places);
-          response = await fetch('http://127.0.0.1:5500/countries', {
+          response = await fetch('http://127.0.0.1:5000/countries', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 if (placeId) {
-  fetch(`http://127.0.0.1:5500/api/places/${placeId}`)
+  fetch(`http://127.0.0.1:5000/api/places/${placeId}`)
       .then(response => response.json())
       .then(data => {
           // Remplir les détails du lieu dans le HTML
