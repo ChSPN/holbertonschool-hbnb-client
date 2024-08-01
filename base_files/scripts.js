@@ -132,3 +132,87 @@ function filterPlaces(selectedCountry) {
       }
   });
 }
+// Extraire l'ID de l'endroit à partir des paramètres de l'URL
+function getPlaceIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('place_id');
+}
+//Faire une requête AJAX pour obtenir les détails de l'endroit
+async function fetchPlaceDetails(placeId, token) {
+  const response = await fetch(`http://127.0.0.1:5000/places/${placeId}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      }
+  });
+
+  if (response.ok) {
+      return await response.json();
+  } else {
+      throw new Error('Failed to fetch place details');
+  }
+}
+//Remplir dynamiquement les détails de l'endroit
+function displayPlaceDetails(place) {
+  document.getElementById('place-name').textContent = place.name;
+  document.getElementById('place-description').textContent = place.description;
+  document.getElementById('place-location').textContent = place.location;
+  document.getElementById('place-price').textContent = `$${place.price_per_night}`;
+
+  const amenitiesList = document.getElementById('place-amenities');
+  place.amenities.forEach(amenity => {
+      const li = document.createElement('li');
+      li.textContent = amenity;
+      amenitiesList.appendChild(li);
+  });
+
+  // Afficher les avis
+  const reviewsList = document.getElementById('reviews-list');
+  place.reviews.forEach(review => {
+      const div = document.createElement('div');
+      div.classList.add('review-card');
+      div.innerHTML = `
+          <p>${review.comment}</p>
+          <p><strong>${review.user_name}</strong></p>
+          <p>Rating: ${review.rating}</p>
+      `;
+      reviewsList.appendChild(div);
+  });
+}
+// Afficher le formulaire d'ajout de commentaire seulement si l'utilisateur est authentifié
+function isAuthenticated() {
+  return !!getCookie('token');
+}
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function displayAddReviewForm() {
+  if (isAuthenticated()) {
+      document.getElementById('add-review-form').style.display = 'block';
+  } else {
+      document.getElementById('add-review-form').style.display = 'none';
+  }
+}
+// Combiner le tout et initialiser la page
+document.addEventListener('DOMContentLoaded', async () => {
+  const placeId = getPlaceIdFromUrl();
+  if (!placeId) {
+      alert('Place ID not found in URL');
+      return;
+  }
+
+  const token = getCookie('token');
+  try {
+      const placeDetails = await fetchPlaceDetails(placeId, token);
+      displayPlaceDetails(placeDetails);
+      displayAddReviewForm();
+  } catch (error) {
+      console.error('Error fetching place details:', error);
+      alert('Failed to fetch place details');
+  }
+});
