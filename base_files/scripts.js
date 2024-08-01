@@ -132,7 +132,30 @@ function filterPlaces(selectedCountry) {
       }
   });
 }
-// Extraire l'ID de l'endroit à partir des paramètres de l'URL
+// Fonction pour obtenir les paramètres de la requête
+function getQueryParams() {
+  let params = {};
+  let queryString = window.location.search.substring(1);
+  let regex = /([^&=]+)=([^&]*)/g, m;
+  while (m = regex.exec(queryString)) {
+      params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+  }
+  return params;
+}
+
+// Obtenir l'ID du lieu
+let params = getQueryParams();
+let placeId = params['id'];
+
+// Vérifier si l'ID du lieu est présent
+if (!placeId) {
+  alert("Place ID not found in URL");
+} else {
+  // Procéder à la récupération et l'affichage des détails du lieu
+  console.log("Place ID:", placeId);
+}
+
+// --Extraire l'ID de l'endroit à partir des paramètres de l'URL
 function getPlaceIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get('place_id');
@@ -154,8 +177,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       alert('Failed to fetch place details');
   }
 });
+if (placeId) {
+  fetch(`http://127.0.0.1:5000/api/places/${placeId}`)
+      .then(response => response.json())
+      .then(data => {
+          // Remplir les détails du lieu dans le HTML
+          document.getElementById('place-name').textContent = data.name;
+          document.getElementById('place-description').textContent = data.description;
+          // Continuer à remplir les autres détails...
+      })
+      .catch(error => console.error('Error fetching place details:', error));
+}
+
 //Faire une requête AJAX pour obtenir les détails de l'endroit
-async function fetchPlaceDetails(placeId, token) {
+/* async function fetchPlaceDetails(placeId, token) {
   const response = await fetch(`http://127.0.0.1:5000/places/${place.id}`, {
       method: 'GET',
       headers: {
@@ -169,7 +204,7 @@ async function fetchPlaceDetails(placeId, token) {
   } else {
       throw new Error('Failed to fetch place details');
   }
-}
+} */
 //Remplir dynamiquement les détails de l'endroit
 function displayPlaceDetails(place) {
   document.getElementById('place-name').textContent = place.name;
