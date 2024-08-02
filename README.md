@@ -1,59 +1,82 @@
-### HBnB Evolution Project: Part 3 - Front-end Web Development
+# Holberton School - HBNB Client
 
-In this phase, you'll be focusing on the front-end development of your application using HTML5, CSS3, and JavaScript ES6. Your task is to design and implement an interactive user interface that connects with the back-end services you have developed in previous parts of the project.
+## Description
 
-#### Objectives
+This project implements the client-side functionalities for the HBNB web application. It includes the following features:
+- User login and authentication using JWT tokens.
+- Displaying a list of places fetched from the API.
+- Viewing detailed information for a selected place.
+- Adding reviews for places if the user is authenticated.
+- Client-side filtering of places based on country selection.
 
-- Develop a user-friendly interface following provided design specifications.
-- Implement client-side functionality to interact with the back-end API.
-- Ensure secure and efficient data handling using JavaScript.
-- Apply modern web development practices to create a dynamic web application.
+## Features
 
-#### Learning Goals
+- **Login Functionality**: Users can log in using their email and password. The application uses JWT tokens for session management.
+- **Place Listings**: Fetches and displays a list of places from the API, including their details such as name, description, location, and price.
+- **Place Details**: Displays detailed information about a specific place, including an option to add a review if the user is authenticated.
+- **Client-Side Filtering**: Allows users to filter places based on the selected country without reloading the page.
 
-- Understand and apply HTML5, CSS3, and JavaScript ES6 in a real-world project.
-- Learn to interact with back-end services using AJAX/Fetch API.
-- Implement authentication mechanisms and manage user sessions.
-- Use client-side scripting to enhance user experience without page reloads.
+## Requirements
 
-#### Tasks Breakdown
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- Fetch API
+- JWT for authentication
+- Backend API for places and authentication
 
-1. **Design (Task 1)**
-   - Complete [provided HTML and CSS files](./base_files) to match the given design specifications.
-   - Create pages for Login, List of Places, Place Details, and Add Review.
+## Installation
 
-2. **Login (Task 2)**
-   - Implement login functionality using the back-end API.
-   - Store the JWT token returned by the API in a cookie for session management.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ChSPN/holbertonschool-hbnb-client.git
+   cd holbertonschool-hbnb-client
+2. Open the project in your preferred code editor.
+3. Ensure that the backend server is running and accessible.
 
-3. **List of Places (Task 3)**
-   - Implement the main page to display a list of all places.
-   - Fetch places data from the API and implement client-side filtering based on country selection.
-   - Ensure the page redirects to the login page if the user is not authenticated.
+## Usage
+### Login Functionality
+1. Open login.html in your browser.
+2. Enter your email and password.
+3. If the login is successful, you will be redirected to the main page (index.html).
 
-4. **Place Details (Task 4)**
-   - Implement the detailed view of a place.
-   - Fetch place details from the API using the place ID.
-   - Provide access to the add review form if the user is authenticated.
+### Viewing Places
+1. Open index.html in your browser.
+2. The page will automatically fetch and display a list of places from the API.
 
-5. **Add Review (Task 5)**
-   - Implement the form to add a review for a place.
-   - Ensure the form is accessible only to authenticated users, redirecting others to the index page.
+### Viewing Place Details
+1. Click the "View Details" button on any place card in index.html.
+2. The page will redirect to place.html and display detailed information about the selected place.
 
-#### Resources
+### Adding Reviews
+1. Open place.html for a specific place.
+2. If you are logged in, you will see a form to add a review.
 
-- [HTML5 Documentation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
-- [CSS3 Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [JavaScript ES6 Features](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-- [Handling Cookies in JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie)
-- [Client-Side Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+## Development
+### Check User Authentication
+1. On page load, check if the user is authenticated by verifying the presence of the JWT token in cookies.
+2. If the token is not found, show the login link.
+3. If the token is found, hide the login link and fetch places data.
 
-#### Sample Design
+### Fetch Places Data
+1. Use the Fetch API to send a GET request to the endpoint that returns the list of places.
+2. Include the token in the Authorization header of your request.
 
-index.html
-![hbnb_index.png](./hbnb_index.png)
+### Populate Places List
+1. Dynamically create HTML elements to display each place’s information (e.g., name, description, location).
+2. Append these elements to the #places-list section.
 
-place.html with embeded add_review.html
-![place_full.png](./place_full.png)
+### Implement Client-Side Filtering
+1. Add an event listener to the country filter dropdown.
+2. Filter the displayed places based on the selected country without reloading the page.
 
+## Testing
+1. Test the login functionality with valid and invalid credentials to ensure it works as expected.
+2. Verify that the JWT token is stored in the cookie after a successful login.
+3. Ensure that the user is redirected to the main page after login.
+4. Test the functionality by logging in and viewing the list of places.
+5. Verify that the client-side filter works as expected.
+6. Ensure the login link appears only when the user is not authenticated.
+
+## Author
+Charlène SCOMPARIN / [GitHub Repository](https://github.com/ChSPN/holbertonschool-hbnb-client)
